@@ -1,0 +1,200 @@
+docker-compose logs --follow
+Attaching to geonetwork4try
+[36mgeonetwork4try |[0m catalina home: /usr/local/tomcat/native-jni-lib/../
+[36mgeonetwork4try |[0m data dir: /var/lib/geonetwork/_data
+[36mgeonetwork4try |[0m db host: 192.168.15.5
+[36mgeonetwork4try |[0m db port: 5432
+[36mgeonetwork4try |[0m db name: geonetwork
+[36mgeonetwork4try |[0m db user geonetwork
+[36mgeonetwork4try |[0m db pass geonetwork
+[36mgeonetwork4try |[0m psql: FATAL:  password authentication failed for user "geonetwork"
+[36mgeonetwork4try |[0m password retrieved from file "/root/.pgpass"
+[36mgeonetwork4try |[0m psql: FATAL:  password authentication failed for user "geonetwork"
+[36mgeonetwork4try |[0m password retrieved from file "/root/.pgpass"
+[36mgeonetwork4try |[0m Database 'geonetwork' doesn't exist. Creating it...
+[36mgeonetwork4try |[0m CREATE ROLE
+[36mgeonetwork4try |[0m ALTER ROLE
+[36mgeonetwork4try |[0m CREATE DATABASE
+[36mgeonetwork4try |[0m GRANT
+[36mgeonetwork4try |[0m Database 'geonetwork' now exist. Creating extensions it...
+[36mgeonetwork4try |[0m CREATE EXTENSION
+[36mgeonetwork4try |[0m CREATE EXTENSION
+[36mgeonetwork4try |[0m CREATE EXTENSION
+[36mgeonetwork4try |[0m CREATE EXTENSION
+[36mgeonetwork4try |[0m creating config-overrides.html
+[36mgeonetwork4try |[0m creating config-overrides-localhost.html
+[36mgeonetwork4try |[0m at /usr/local/tomcat/native-jni-lib/..//webapps/geonetwork/WEB-INF/config-overrides-localhost.xml
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.690 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.34
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.694 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          Apr 3 2020 12:02:52 UTC
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.695 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.34.0
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.695 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Linux
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.696 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            5.3.0-46-generic
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.696 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.696 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             /usr/local/openjdk-8/jre
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.697 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           1.8.0_252-b09
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.697 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.697 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         /usr/local/tomcat
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.698 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         /usr/local/tomcat
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.700 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=/usr/local/tomcat/native-jni-lib/..//conf/logging.properties
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.700 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.700 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.security.egd=file:/dev/./urandom
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.701 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.awt.headless=true
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.701 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xms512m
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.702 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Xmx2024m
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.702 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:NewSize=512m
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.702 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:MaxNewSize=1024m
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.703 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -XX:+UseConcMarkSweepGC
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.703 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.703 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.704 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dorg.apache.catalina.security.SecurityListener.UMASK=0027
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.704 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dgeonetwork.dir=/var/lib/geonetwork/_data
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.705 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.705 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=/usr/local/tomcat/native-jni-lib/../
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.705 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=/usr/local/tomcat/native-jni-lib/../
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.706 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=/usr/local/tomcat/native-jni-lib/..//temp
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.706 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Loaded APR based Apache Tomcat Native library [1.2.23] using APR version [1.6.5].
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.706 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.707 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:36.715 INFO [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL successfully initialized [OpenSSL 1.1.1d  10 Sep 2019]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:37.538 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:37.667 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1,539] milliseconds
+[36mgeonetwork4try |[0m 02-May-2020 18:25:37.750 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:37.752 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.34]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:37.781 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [/usr/local/tomcat/webapps/geonetwork]
+[36mgeonetwork4try |[0m 02-May-2020 18:25:56.552 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:01,717 INFO  [jeeves] - Overrides being applied to configuration file: .*/WEB-INF/config.xml
+[36mgeonetwork4try |[0m 2020-05-02 18:26:01,729 INFO  [jeeves] - Replacing child xml elements of resources
+[36mgeonetwork4try |[0m 2020-05-02 18:26:01,758 INFO  [jeeves] - Upload directory is: /usr/local/tomcat/webapps/geonetwork/./data/tmp/
+[36mgeonetwork4try |[0m 2020-05-02 18:26:01,792 WARN  [jeeves.dbmspool] - Using transaction isolation setting READ_COMMITTED
+[36mgeonetwork4try |[0m 2020-05-02 18:26:10,477 WARN  [jeeves.engine] - Jeeves DBMS service configuration lookup failed (database may not be available yet). Message is: ERROR: relation "services" does not exist
+[36mgeonetwork4try |[0m   Position: 15
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,228 INFO  [jeeves.service] - Service csw already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,354 INFO  [jeeves.service] - Service xml.metadata.insert already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,354 INFO  [jeeves.service] - Service xml.metadata.delete already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,358 INFO  [jeeves.service] - Service xml.relation.get already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,358 INFO  [jeeves.service] - Service xml.relation.insert already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,359 INFO  [jeeves.service] - Service xml.relation.delete already exist, re-register it.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,449 INFO  [jeeves.apphand] - Initializing GeoNetwork 2.10.4-0.SNAPSHOT ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,453 WARN  [geonetwork.data.directory] -    - Data directory initialization: /var/lib/geonetwork/_data
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,465 INFO  [jeeves.apphand] - Data directory: /var/lib/geonetwork/_data/
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,466 INFO  [jeeves.apphand] - jeeves.xml.catalog.files property set to /usr/local/tomcat/webapps/geonetwork/WEB-INF/oasis-catalog.xml;/var/lib/geonetwork/_data/config/schemaplugin-uri-catalog.xml
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,466 INFO  [jeeves.apphand] - jeeves.xml.catalog.blankxslfile property set to /usr/local/tomcat/webapps/geonetwork/xsl/blanks.xsl
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,466 INFO  [jeeves.apphand] - mime-mappings property set to /usr/local/tomcat/webapps/geonetwork/WEB-INF/mime-types.properties
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,707 INFO  [jeeves.apphand] -   - Database connection on jdbc:postgresql_postGIS://192.168.15.5:5432/geonetwork ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,724 INFO  [jeeves.apphand] -       jdbc:postgresql_postGIS://192.168.15.5:5432/geonetwork is an empty database (Metadata table not found).
+[36mgeonetwork4try |[0m 2020-05-02 18:26:11,724 INFO  [jeeves.apphand] -          - SQL create file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/create prefix:create-db- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:15,417 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:data-db- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:16,161 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-eng- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:16,799 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-fre- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:17,357 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-ger- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:18,059 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-spa- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:18,706 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-cat- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:19,284 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-rus- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:19,997 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-por- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:20,633 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-chi- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:21,159 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-dut- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:21,751 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-nor- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:22,253 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-fin- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:22,756 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-ara- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:23,269 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-ita- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:23,784 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-tur- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:24,576 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-vie- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,112 INFO  [jeeves.apphand] -          - SQL data file:/usr/local/tomcat/webapps/geonetwork/WEB-INF/classes/setup/sql/data prefix:loc-pol- ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,801 INFO  [jeeves.apphand] -       Setting catalogue logo for current node identified by: c254ea29-824d-4cde-8fd3-091feabd61d9
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,804 INFO  [jeeves.apphand] -   - Thread Pool...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,808 INFO  [jeeves.apphand] -   - Setting manager...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,845 INFO  [jeeves.apphand] -   - Migration ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,846 INFO  [jeeves.apphand] -       Webapp   version:2.10.4-0 subversion:SNAPSHOT
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,846 INFO  [jeeves.apphand] -       Database version:2.10.4 subversion:0
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,846 INFO  [jeeves.apphand] -       Webapp version = Database version, no migration task to apply.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,849 INFO  [jeeves.apphand] -   - Z39.50...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,899 INFO  [jeeves.apphand] -      Repositories file built from template.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,906 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4e5b612: startup date [Sat May 02 18:26:25 UTC 2020]; root of context hierarchy
+[36mgeonetwork4try |[0m 2020-05-02 18:26:25,912 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] - Loading XML bean definitions from class path resource [JZkitApplicationContext.xml]
+[36mgeonetwork4try |[0m 2020-05-02 18:26:26,448 INFO  [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[36mgeonetwork4try |[0m 2020-05-02 18:26:26,730 INFO  [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[36mgeonetwork4try |[0m 2020-05-02 18:26:26,737 INFO  [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[36mgeonetwork4try |[0m 2020-05-02 18:26:26,743 INFO  [org.springframework.context.annotation.ClassPathBeanDefinitionScanner] - JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[36mgeonetwork4try |[0m 2020-05-02 18:26:26,977 INFO  [org.springframework.beans.factory.support.DefaultListableBeanFactory] - Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@370c7f12: defining beans [JZKitZ3950PluginMetadata,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,QB-CQL,org.jzkit.recordbuilder.iso2709,org.jzkit.recordbuilder.xml,org.jzkit.recordbuilder.string,messageSource,ContextGateway,OIDRegister,Z3950Listener,JZKit2SearchBackend,JZKitConfig,ProfileService,TransformationService,RecordBuilderService,StatelessQueryService,SearchSession,SearchSessionFactory,RPNToInternalRules,InternalToType1ConversionRules,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,174 INFO  [jeeves.apphand] -      Server is Enabled.
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,177 INFO  [jeeves.apphand] -   - Schema manager...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,177 INFO  [jeeves.apphand] - 			- Schema plugins directory: /var/lib/geonetwork/_data/config/schema_plugins
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,178 INFO  [jeeves.apphand] - 			- Schema Catalog File     : /var/lib/geonetwork/_data/config/schemaplugin-uri-catalog.xml
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,258 INFO  [jeeves.apphand] -   - Search...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,259 INFO  [jeeves.apphand] -   - Log spatial object: false
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,259 INFO  [jeeves.apphand] -   - Log in asynch mode: true
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,325 INFO  [jeeves.apphand] -   - Lucene configuration is:
+[36mgeonetwork4try |[0m 2020-05-02 18:26:28,327 INFO  [jeeves.apphand] - Lucene configuration:
+[36mgeonetwork4try |[0m  * Version: LUCENE_36
+[36mgeonetwork4try |[0m  * RAMBufferSize: 48.0
+[36mgeonetwork4try |[0m  * MergeFactor: 10
+[36mgeonetwork4try |[0m  * Default analyzer: org.fao.geonet.kernel.search.GeoNetworkAnalyzer
+[36mgeonetwork4try |[0m  * Field analyzers: {operatesOn=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, hasfeaturecat=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, subject=org.apache.lucene.analysis.core.KeywordAnalyzer, hassource=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, _groupPublished=org.apache.lucene.analysis.core.KeywordAnalyzer, _source=org.apache.lucene.analysis.core.KeywordAnalyzer, _uuid=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, _cat=org.apache.lucene.analysis.core.KeywordAnalyzer, keyword=org.apache.lucene.analysis.core.KeywordAnalyzer, parentUuid=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, inspirerelated=org.apache.lucene.analysis.core.KeywordAnalyzer, operatesOnIdentifier=org.fao.geonet.kernel.search.GeoNetworkAnalyzer}
+[36mgeonetwork4try |[0m  * Field search analyzers: {subject=org.apache.lucene.analysis.core.KeywordAnalyzer, hassource=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, _groupPublished=org.apache.lucene.analysis.core.KeywordAnalyzer, _uuid=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, parentUuid=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, operatesOn=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, hasfeaturecat=org.fao.geonet.kernel.search.GeoNetworkAnalyzer, _source=org.apache.lucene.analysis.core.KeywordAnalyzer, _cat=org.apache.lucene.analysis.core.KeywordAnalyzer, keyword=org.apache.lucene.analysis.core.KeywordAnalyzer, inspirerelated=org.apache.lucene.analysis.core.KeywordAnalyzer, operatesOnIdentifier=org.fao.geonet.kernel.search.GeoNetworkAnalyzer}
+[36mgeonetwork4try |[0m  * Field boost factor: {_isTemplate=0.0, _owner=0.0, _op0=0.0, _op1=0.0, _dummy=0.0, _op2=0.0}
+[36mgeonetwork4try |[0m  * Boost document class: null
+[36mgeonetwork4try |[0m  * Tokenized fields: [specificationTitle, subject, altTitle, keywordType, levelName, abstract, title, any]
+[36mgeonetwork4try |[0m  * Numeric fields: [eastBL, southBL, northBL, westBL, denominator]
+[36mgeonetwork4try |[0m  * Dump fields: {serviceType=serviceType, _isPublishedToAll=isPublishedToAll, _edit=edit, _owner=owner, responsibleParty=responsibleParty, link=link, _indexingError=idxError, language=language, _defaultTitle=defaultTitle, type=type, datasetLang=datasetLang, _isHarvested=isHarvested, _displayOrder=displayOrder, _selected=selected, _docLocale=docLocale, conditionApplyingToAccessAndUse=Constraints, _popularity=popularity, _userinfo=userinfo, _download=download, keyword=keyword, credit=credit, _indexingErrorMsg=idxMsg, _valid_xsd=valid_xsd, _notify=notify, _featured=featured, otherConstr=Constraints, image=image, _valid_schematron-rules-iso=valid_schematron-rules-iso, _ownername=ownername, _valid_schematron-rules-geonetwork=valid_schematron-rules-geonetwork, _title=title, abstract=abstract, _status=status, accessConstr=Constraints, parentUuid=parentId, _isTemplate=isTemplate, _valid_schematron-rules-inspire=valid_schematron-rules-inspire, classif=SecurityConstraints, _view=view, _dynamic=dynamic, _valid=valid, spatialRepresentationType=spatialRepresentationType, _rating=rating, _source=source, _cat=category, _locale=_locale, geoBox=geoBox}
+[36mgeonetwork4try |[0m  * Search boost query: null
+[36mgeonetwork4try |[0m  * Score: 
+[36mgeonetwork4try |[0m   * trackDocScores: false 
+[36mgeonetwork4try |[0m   * trackMaxScore: false 
+[36mgeonetwork4try |[0m   * docsScoredInOrder: false 
+[36mgeonetwork4try |[0m Taxonomy configuration: [hits, results_with_summary, titles, results]
+[36mgeonetwork4try |[0m   * type: hits
+[36mgeonetwork4try |[0m {serviceType=Field: serviceType	name:serviceType	max:10	sort byCOUNT	sort order:DESCENDING, inspiretheme=Field: inspiretheme	name:inspireTheme	max:35	sort byVALUE	sort order:ASCENDIND, orgName=Field: orgName	name:orgName	max:15	sort byCOUNT	sort order:DESCENDING, spatialRepresentationType=Field: spatialRepresentationType	name:spatialRepresentationType	max:10	sort byCOUNT	sort order:DESCENDING, metadataPOC=Field: metadataPOC	name:metadataPOC	max:15	sort byCOUNT	sort order:DESCENDING, keyword=Field: keyword	name:keyword	max:15	sort byCOUNT	sort order:DESCENDING, type=Field: type	name:type	max:10	sort byCOUNT	sort order:DESCENDING, createDateYear=Field: createDateYear	name:createDateYear	max:40	sort byVALUE	sort order:DESCENDING, denominator=Field: denominator	name:denominator	max:10	sort byNUMVALUE	sort order:DESCENDING}  * type: results_with_summary
+[36mgeonetwork4try |[0m {serviceType=Field: serviceType	name:serviceType	max:10	sort byCOUNT	sort order:DESCENDING, inspiretheme=Field: inspiretheme	name:inspireTheme	max:35	sort byVALUE	sort order:ASCENDIND, orgName=Field: orgName	name:orgName	max:15	sort byCOUNT	sort order:DESCENDING, spatialRepresentationType=Field: spatialRepresentationType	name:spatialRepresentationType	max:10	sort byCOUNT	sort order:DESCENDING, metadataPOC=Field: metadataPOC	name:metadataPOC	max:15	sort byCOUNT	sort order:DESCENDING, keyword=Field: keyword	name:keyword	max:15	sort byCOUNT	sort order:DESCENDING, type=Field: type	name:type	max:10	sort byCOUNT	sort order:DESCENDING, createDateYear=Field: createDateYear	name:createDateYear	max:40	sort byCOUNT	sort order:ASCENDIND, denominator=Field: denominator	name:denominator	max:20	sort byVALUE	sort order:ASCENDIND}  * type: titles
+[36mgeonetwork4try |[0m {title=Field: title	name:title	max:100	sort byCOUNT	sort order:DESCENDING}  * type: results
+[36mgeonetwork4try |[0m {keyword=Field: keyword	name:keyword	max:100	sort byCOUNT	sort order:DESCENDING}
+[36mgeonetwork4try |[0m 2020-05-02 18:26:29,075 WARN  [geonetwork.lucene] - Stopwords file with incorrect ISO 639-2 language as filename: README
+[36mgeonetwork4try |[0m 02-May-2020 18:26:30.037 WARNING [main] org.geotools.referencing.factory.PropertyAuthorityFactory.<init> Axis elements found in a wkt definition, the force longitude first axis order hint might not be respected:
+[36mgeonetwork4try |[0m PROJCS["CH1903 / LV03", GEOGCS["CH1903", DATUM["CH1903", SPHEROID["Bessel 1841", 6377397.155, 299.1528128, AUTHORITY["EPSG","7004"]], TOWGS84[674.4, 15.1, 405.3, 0.0, 0.0, 0.0, 0.0], AUTHORITY["EPSG","6149"]], PRIMEM["Greenwich", 0.0, AUTHORITY["EPSG","8901"]], UNIT["degree", 0.017453292519943295], AXIS["Geodetic longitude", EAST], AXIS["Geodetic latitude", NORTH], AUTHORITY["EPSG","4149"]], PROJECTION["Oblique Mercator", AUTHORITY["EPSG","9815"]], PARAMETER["longitude_of_center", 7.439583333333333], PARAMETER["latitude_of_center", 46.952405555555565], PARAMETER["azimuth", 90.0], PARAMETER["scale_factor", 1.0], PARAMETER["false_easting", 600000.0], PARAMETER["false_northing", 200000.0], PARAMETER["rectified_grid_angle", 90.0], UNIT["m", 1.0], AXIS["Easting", EAST], AXIS["Northing", NORTH], AUTHORITY["EPSG","21781"]] 
+[36mgeonetwork4try |[0m 02-May-2020 18:26:31.033 WARNING [main] org.geotools.referencing.factory.PropertyAuthorityFactory.<init> Axis elements found in a wkt definition, the force longitude first axis order hint might not be respected:
+[36mgeonetwork4try |[0m PROJCS["Google Projection",GEOGCS["WGS 84",DATUM["World Geodetic System 1984",SPHEROID["WGS 84", 6378137.0, 298.257223563, AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich", 0.0, AUTHORITY["EPSG","8901"]],UNIT["degree", 0.017453292519943295],AXIS["Geodetic longitude", EAST],AXIS["Geodetic latitude", NORTH],AUTHORITY["EPSG","4326"]],PROJECTION["Popular Visualisation Pseudo Mercator", AUTHORITY["EPSG","1024"]],PARAMETER["semi_minor", 6378137.0],PARAMETER["latitude_of_origin", 0.0],PARAMETER["central_meridian", 0.0],PARAMETER["scale_factor", 1.0],PARAMETER["false_easting", 0.0],PARAMETER["false_northing", 0.0],UNIT["m", 1.0]]
+[36mgeonetwork4try |[0m 2020-05-02 18:26:32,828 INFO  [jeeves.apphand] -   - Access manager...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:32,847 INFO  [jeeves.apphand] -   - Xml serializer and Data manager...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:35,889 INFO  [jeeves.apphand] -   - Thesaurus...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:35,924 INFO  [jeeves.apphand] -   - Catalogue services for the web...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:35,996 INFO  [jeeves.apphand] -   - Open Archive Initiative (OAI-PMH) server...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:36,046 INFO  [jeeves.apphand] -   - Metadata notifier ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:36,046 INFO  [jeeves.apphand] -   - Metadata notifier ...
+[36mgeonetwork4try |[0m 2020-05-02 18:26:36,048 INFO  [jeeves.apphand] - Site ID is : c254ea29-824d-4cde-8fd3-091feabd61d9
+[36mgeonetwork4try |[0m 2020-05-02 18:26:36,048 INFO  [jeeves.apphand] -   - Harvest manager...
+[36mgeonetwork4try |[0m 02-May-2020 18:26:36.185 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [/usr/local/tomcat/webapps/geonetwork] has finished in [58,403] ms
+[36mgeonetwork4try |[0m 02-May-2020 18:26:36.193 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+[36mgeonetwork4try |[0m 02-May-2020 18:26:36.214 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [58,545] milliseconds
+[36mgeonetwork4try |[0m 2020-05-02 18:27:23,670 INFO  [jeeves.request] - ==========================================================
+[36mgeonetwork4try |[0m 2020-05-02 18:27:23,675 INFO  [jeeves.request] - HTML Request (from 192.168.15.8) : /geonetwork/srv/eng/home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:23,861 INFO  [jeeves.service] - Dispatching : home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:23,863 INFO  [jeeves.service] -    -> dispatching to output for : home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,084 INFO  [jeeves] - Overrides being applied to configuration file: .*/WEB-INF/config-gui.xml
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,084 INFO  [jeeves] - Replacing attribute widget of node client
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,085 INFO  [jeeves] - Replacing attribute url of node client
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,086 INFO  [jeeves] - Replacing attribute parameters of node client
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,086 INFO  [jeeves] - Replacing attribute createParameter of node client
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,087 INFO  [jeeves] - Replacing attribute stateId of node client
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,088 INFO  [jeeves.service] -      -> transforming with stylesheet : /usr/local/tomcat/webapps/geonetwork/xsl/home.xsl
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,331 INFO  [jeeves.service] -      -> end transformation for : home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,334 INFO  [jeeves.service] -    -> output ended for : home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,334 INFO  [jeeves.service] -  -> dispatch ended for : home
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,453 INFO  [jeeves.request] - ==========================================================
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,463 INFO  [jeeves.request] - HTML Request (from 192.168.15.8) : /geonetwork/srv/eng/search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,467 INFO  [jeeves.service] - Dispatching : search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,472 INFO  [jeeves.service] -    -> dispatching to output for : search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,542 INFO  [jeeves.webapp.search] - Creating default metadata tab
+[36mgeonetwork4try |[0m 2020-05-02 18:27:25,711 INFO  [jeeves.service] -      -> transforming with stylesheet : /usr/local/tomcat/webapps/geonetwork/xsl/search.xsl
+[36mgeonetwork4try |[0m Error at xsl:call-template on line 12 column 41 of common.xsl:
+[36mgeonetwork4try |[0m   XTSE0650: No template exists named getLangId
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,751 ERROR [jeeves.service] -    -> exception during transformation for : search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,752 ERROR [jeeves.service] -    ->  (C) stylesheet : /usr/local/tomcat/webapps/geonetwork/xsl/search.xsl
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,752 ERROR [jeeves.service] -    ->  (C) message    : Failed to compile stylesheet. 1 error detected.
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,752 ERROR [jeeves.service] -    ->  (C) exception  : TransformerConfigurationException
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,757 INFO  [jeeves.service] -    -> dispatching to error for : search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:27,799 INFO  [jeeves.service] -      -> transforming with stylesheet : /usr/local/tomcat/webapps/geonetwork/xsl/error.xsl
+[36mgeonetwork4try |[0m 2020-05-02 18:27:28,415 INFO  [jeeves.service] -      -> end error transformation for : search
+[36mgeonetwork4try |[0m 2020-05-02 18:27:28,416 INFO  [jeeves.service] -    -> error ended for : search
+[36mgeonetwork4try |[0m 02-May-2020 18:56:29.840 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.fao.geonet.kernel.GeonetworkOverridingWKTFactory backing store
+[36mgeonetwork4try |[0m 02-May-2020 18:56:30.019 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.geotools.referencing.factory.epsg.UnnamedExtension backing store
+[36mgeonetwork4try |[0m 02-May-2020 18:56:30.021 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.geotools.referencing.factory.epsg.EsriExtension backing store
+[36mgeonetwork4try |[0m 02-May-2020 19:26:30.030 INFO [GT authority factory disposer] org.geotools.referencing.factory.DeferredAuthorityFactory.disposeBackingStore Disposing class org.geotools.referencing.factory.epsg.ThreadedHsqlEpsgFactory backing store

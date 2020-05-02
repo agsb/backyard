@@ -1,0 +1,1 @@
+FROM geonode/postgis:10

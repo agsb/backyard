@@ -1,0 +1,37 @@
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    pgadmin:
+        build: 
+            context: ./
+            dockerfile: Dockerfile_pgadmin
+        image: pgadmin2${COMPOSE_PROJECT_NAME}:local
+        container_name: pgadmin4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.pgadmin.component: pgadmin
+            org.instance.name: pgadmin
+        ports:
+            - 5050:5050
+        volumes:
+            - dbbackups:/pg_backups
+            - pgadmindb:/var/lib/pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@example.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+            PGADMIN_LISTEN_ADDRESS: pgadmin
+            PGADMIN_LISTEN_PORT: 5050
+
+volumes:
+    dbbackups:
+        name: ${COMPOSE_PROJECT_NAME}_dbbackups
+    pgadmindb:
+        name: ${COMPOSE_PROJECT_NAME}_pgadmin
+

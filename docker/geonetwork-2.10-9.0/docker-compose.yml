@@ -1,0 +1,31 @@
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    getnetwork:
+        build: 
+            context: ./
+            dockerfile: Dockerfile_geonetwork
+        image: geonetwork:2.10-9.0
+        container_name: geonetwork4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: geonetwork
+            org.instance.name: geonetwork
+        ports:
+            - 8080:8080
+        volumes:
+            - geonetwork_datadir:/var/lib/geonetwork/_data
+        environment:
+            geonetwork_DEFAULT_EMAIL: admin@example.com
+
+volumes:
+    geonetwork_datadir:
+        name: ${COMPOSE_PROJECT_NAME}_datadir-2.10-9.0
+

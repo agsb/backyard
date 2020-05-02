@@ -1,0 +1,36 @@
+#
+# from
+#
+#
+# if is a alpine image, sintax will be bugged, exit now !
+#
+RUN ls /bin/busybox && grep Alpine /etc/issue && echo "Is a alpine, exiting... " && exit 1
+#
+# create a non-root user
+#
+ARG username=$MY_USER
+ARG gid=$MY_GID
+ARG uid=$MY_UID
+ENV USER $MY_USER
+ENV GID $MY_GID
+ENV UID $MY_UID
+ENV HOME /home/$USER
+RUN addgroup --gid $GID $USER && adduser --disabled-password \
+    --gecos "NoN RooT uSeR" --gid $GID --uid $UID --home $HOME $USER && \
+    echo " user $USER ($UID:$GID) enabled "
+
+#
+#    create a default init 
+#
+ADD docker-entrypoint-default.sh /docker-entrypoint.sh
+RUN mkdir /docker-entrypoint.d && \
+    chown -R $UID.$GID /docker-entrypoint.sh /docker-entrypoint.d && \
+    chmod +x /docker-entrypoint.sh /docker-entrypoint.d && \
+    echo " docker-entrypoint enabled "
+
+#
+#   default entrypoint aka init
+#
+ENTRYPOINT ["/docker-entrypoint.sh",""]
+CMD [""]
+ 

@@ -1,0 +1,101 @@
+# GeoNetwork
+#
+# Access via "http://localhost:8080/geonetwork" (or "http://$(docker-machine ip):8080/geonetwork" if using docker-machine)
+#
+# Default user: admin
+# Default password: admin
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    postgisdb:
+        build: 
+            context: ./build/
+            dockerfile: Dockerfile_postgis
+        image: postgis2${COMPOSE_PROJECT_NAME}:local
+        container_name: postgis4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: postgis
+            org.geonetwork.instance.name: geonetwork
+        volumes:
+            - dbdata:/var/lib/postgresql/data
+            - dbbackups:/pg_backups
+        env_file:
+            - ./env/${SET_DOCKER_ENV}/postgisdb.env
+    
+    pgadmindb:
+        build: 
+            context: ./build/
+            dockerfile: Dockerfile_pgadmin
+        image: pgadmin2${COMPOSE_PROJECT_NAME}:local
+        container_name: pgadmin4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: pgadmin
+            org.geonetwork.instance.name: geonetwork
+        ports:
+            - 5050:5050
+        volumes:
+            - dbbackups:/pg_backups
+            - pgadmindb:/var/lib/pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@example.com
+            PGADMIN_DEFAULT_PASSWORD: admin
+            PGADMIN_LISTEN_ADDRESS: pgadmindb
+            PGADMIN_LISTEN_PORT: 5050
+        env_file:
+            - ./env/${SET_DOCKER_ENV}/pgadmindb.env
+        depends_on:
+            - postgisdb
+
+    geonetwork:
+        build: 
+            context: ./build/
+            dockerfile: Dockerfile_geonetwork
+        image: geonetwork2${COMPOSE_PROJECT_NAME}:local
+        container_name: geonetwork4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: geonetwork
+            org.geonetwork.instance.name: geonetwork
+        ports:
+            - 8080:8080
+        volumes:
+            - geonetwork_datadir:/var/lib/geonetwork/_data
+        environment:
+            DATA_DIR: /var/lib/geonetwork/_data
+        env_file:
+            - ./env/${SET_DOCKER_ENV}/geonetwork.env
+        depends_on:
+            - postgisdb
+            - pgadmindb
+
+#        healthcheck:
+#             test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.  0.0.1:8080/geonetwork/"
+#             interval: 60s
+#             timeout: 15s
+#             retries: 3
+#             start_period: 180s
+
+
+volumes:
+    dbdata:
+        name: ${COMPOSE_PROJECT_NAME}_dbdata
+    dbbackups:
+        name: ${COMPOSE_PROJECT_NAME}_dbbackups
+    pgadmindb:
+        name: ${COMPOSE_PROJECT_NAME}_pgadmindb
+    geonetwork_datadir:
+        name: ${COMPOSE_PROJECT_NAME}_datadir
+

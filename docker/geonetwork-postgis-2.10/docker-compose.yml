@@ -1,0 +1,52 @@
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    geonetwork:
+        build: 
+            context: ./
+            dockerfile: Dockerfile_geonetwork_postgis
+        image: geonetwork2try
+        container_name: geonetwork4try
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: geonetwork
+            org.geonetwork.instance.name: geonetwork
+        ports:
+            - 8080:8080
+        volumes:
+            - geonetwork_datadir:/var/lib/geonetwork/_data
+        environment:
+            DATA_DIR: /var/lib/geonetwork/_data
+            POSTGRES_USER: postgres
+            POSTGRES_PASS: postgres
+            POSTGRES_DB_HOST: 192.168.15.5
+            POSTGRES_DB_PORT: 5432
+            POSTGRES_DB_NAME: geonetwork
+            POSTGRES_DB_USERNAME: geonetwork
+            POSTGRES_DB_PASSWORD: geonetwork
+
+            #env_file:
+            #- ./env/${SET_DOCKER_ENV}/geonetwork.env
+              #    depends_on:
+              #- postgisdb
+              #- pgadmindb
+
+#        healthcheck:
+#             test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.  0.0.1:8080/geonetwork/"
+#             interval: 60s
+#             timeout: 15s
+#             retries: 3
+#             start_period: 180s
+
+
+volumes:
+    geonetwork_datadir:
+        name: ${COMPOSE_PROJECT_NAME}_try_datadir
+

@@ -1,0 +1,37 @@
+#
+# from scripts for docker in postgis.org
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    postgis:
+        build: 
+            context: ./
+        image: postgis:10-2.5
+        container_name: postgis4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        ports:
+            - 5432:5432
+        labels:
+            org.debian.component: debian-10
+            org.postgresql.component: postgres-10
+            org.postgis.component: postgis-2.5
+        volumes:
+            - dbdata:/var/lib/postgresql/data
+            - dbbackups:/pg_backups
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    
+volumes:
+    dbdata:
+        name: ${COMPOSE_PROJECT_NAME}_dbdata
+    dbbackups:
+        name: ${COMPOSE_PROJECT_NAME}_dbbackups
+

@@ -1,0 +1,155 @@
+
+user nginx nginx;
+
+worker_processes 1;
+
+error_log /var/log/nginx/error.log info;
+
+pid        /var/run/nginx.pid;
+
+events {
+
+    worker_connections 1024;
+
+    use epoll;
+}   
+
+http {
+
+    charset UTF-8;
+
+    include /etc/nginx/mime.types;
+	
+    default_type application/octet-stream;
+
+    index index.html index.htm ;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    error_log /var/log/nginx/error.log;
+
+	gzip off;
+
+	sendfile on;
+	tcp_nopush on;
+	tcp_nodelay on;
+
+	ignore_invalid_headers on;
+
+	index index.html index.htm ;
+
+    error_page  404              /404.html;
+
+    error_page  500 502 503 504  /50x.html;
+
+    upstream sofy {
+        server 127.0.0.1:3000
+        }
+
+	server {
+
+		listen 443 default_server;
+
+		server_name _ ;
+
+		}
+
+	server {
+
+		listen 80;
+
+
+        root    /usr/share/nginx/html ;
+        
+        #return 301 https://$host$request_uri
+
+        location / {
+
+            if ($request_method = OPTIONS) {
+                add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, OPTIONS";
+                add_header Access-Control-Allow-Headers "Authorization, Content-Type, Accept";
+                add_header Access-Control-Allow-Credentials true;
+                add_header Content-Length 0;
+                add_header Content-Type text/plain;
+                add_header Access-Control-Max-Age 1728000;
+                return 200;
+            }
+
+        try_files $uri $uri/ ;    
+
+        }    
+
+
+        location /geonode {
+
+            etag off;
+            expires 0;
+            proxy_pass http://localhost:88/ ;
+
+            proxy_redirect     off;
+            proxy_set_header   Host $host;
+            proxy_set_header   X-Real-IP $remote_addr;
+
+            #proxy_buffering off;
+            #proxy_pass_request_headers on;
+            #proxy_set_header Host $host;
+            }
+
+        location /geoserver {
+
+             etag off;
+             expires 0;
+             proxy_pass http://localhost:88/geoserver ;
+
+             proxy_redirect     off;
+             proxy_set_header   Host $host;
+             proxy_set_header   X-Real-IP $remote_addr;
+
+             #proxy_buffering off;
+             #proxy_pass_request_headers on;
+             #proxy_set_header Host $host;
+  
+            }
+
+    etag on;
+
+    client_max_body_size 100M;
+    client_body_buffer_size 128K;
+
+    proxy_connect_timeout       600;
+    proxy_send_timeout          600;
+    proxy_read_timeout          600;
+    send_timeout                600;
+    uwsgi_read_timeout          600;
+
+    expires 1d;
+    
+    gzip on;
+    gzip_disable "msie6";
+    gzip_comp_level 6;
+    gzip_min_length 1100;
+    gzip_buffers 16 8k;
+    gzip_proxied any;
+    gzip_types
+        text/plain
+        text/css
+        text/js
+        text/xml
+        text/javascript
+        application/javascript
+        application/x-javascript
+        application/json
+        application/xml
+        application/rss+xml
+        image/svg+xml;
+
+	}
+
+   
+   include /etc/nginx/conf.d/*.conf;
+
+}
