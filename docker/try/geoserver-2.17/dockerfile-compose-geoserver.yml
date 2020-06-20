@@ -1,0 +1,42 @@
+
+version: '2.2'
+
+services:
+
+  data-dir-conf:
+    build:
+        context: ./
+    dockerfile: Dockerfile_geoserver_data
+    image: geoserver-datadir:2.17
+    container_name: datadir4${COMPOSE_PROJECT_NAME}
+    restart: unless-stopped
+    stdin_open: true
+    # tty: true
+    labels:
+        org.geoserver.component: data-dir
+        org.geonode.instance.name: geoserver
+    command: /bin/true
+    volumes:
+        - geoserver-data-dir:/geoserver_data/data
+ 
+  geoserver:
+    build:
+        context: ./
+        dockerfile: Dockerfile_geoserver
+    image: geoserver2${COMPOSE_PROJECT_NAME}:local
+    container_name: geoserver4${COMPOSE_PROJECT_NAME}
+    restart: unless-stopped
+    stdin_open: true
+    # tty: true
+    labels:
+        org.geonode.component: geoserver
+        org.geonode.instance.name: geonode
+    depends_on:
+        - data-dir-conf
+    volumes:
+        - geoserver-data-dir:/geoserver_data/data
+          
+volumes:
+    geoserver-data-dir:
+        name: ${COMPOSE_PROJECT_NAME}_gsdatadir
+

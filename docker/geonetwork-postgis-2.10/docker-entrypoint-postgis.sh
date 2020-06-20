@@ -74,6 +74,11 @@ fi
 
 if [ ! -s "$CATALINA_HOME/webapps/geonetwork/WEB-INF/config-overrides-localhost.xml" ]; then
 
+echo " sane for postgis. unknow why error from stylesheet in search.xsl"
+
+sed -i -e 's/<xsl:variable name="langId">/<!--\n<xsl:variable name="langId">/; s/<\/xsl:stylesheet>/-->\n<\/xsl:stylesheet>/;' \
+    "$CATALINA_HOME/webapps/geonetwork/xsl/metadata/common.xsl"
+
 echo "creating config-overrides.html"
 
 sed -i -e 's;\(</overrides>\);\t<override>/WEB-INF/config-overrides-localhost.xml</override>\n\1\n;' \
@@ -97,12 +102,11 @@ cat <<FEOF > "$CATALINA_HOME/webapps/geonetwork/WEB-INF/config-overrides-localho
 
 <file name=".*/WEB-INF/config.xml">
     <replaceXML xpath="resources">
-		<!-- postgresql -->
+		<!-- posgresql -->
 		<resource enabled="\${enable}">
 			<name>main-db</name>
 			<provider>jeeves.resources.dbms.ApacheDBCPool</provider>
 			<config>
-
                 <user>\${db.user}</user>
 				<username>\${db.user}</username>
 				<password>\${db.pass}</password>
@@ -110,19 +114,6 @@ cat <<FEOF > "$CATALINA_HOME/webapps/geonetwork/WEB-INF/config-overrides-localho
 				<url>jdbc:postgresql_postGIS://\${db.host}:\${db.port}/\${db.name}</url>
 				<poolSize>16</poolSize>
 				<validationQuery>SELECT 1 </validationQuery>
-
-                 <!-- maybe for JNDI pool and Jetty
-                 <set name="maxActive">10</set>
-                 <set name="maxIdle">10</set>
-                 <set name="removeAbandoned">true</set>
-                 <set name="removeAbandonedTimeout">3600</set>
-                 <set name="logAbandoned">true</set>
-                 <set name="testOnBorrow">true</set>
-                 <set name="defaultAutoCommit">false</set>
-                 <set name="defaultTransactionIsolation">2</set>
-                 <set name="accessToUnderlyingConnectionAllowed">true</set>
-                 -->
-
 			</config>
 		</resource>
     </replaceXML>

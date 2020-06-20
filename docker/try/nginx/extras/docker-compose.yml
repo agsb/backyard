@@ -1,0 +1,36 @@
+version: '3'
+# use with docker-compose up -d
+services:
+
+        proxy:
+                image: nginx:latest
+                container_name: nginx4proxy
+                stdin_open: true
+                # tty: true
+                restart: unless-stopped
+                ports:
+                    - "80:80"
+                    - "443:443"
+                env_file:
+                    - ./proxy.env
+                environment:
+                    - ENV=development
+                      #networks:
+                      #- proxy-network
+                volumes:
+                    - ./etc/nginx:/etc/nginx
+                    - ./var/lib/nginx:/var/lib/nginx
+                    - ./var/log/nginx:/var/log/nginx
+                    - ./usr/share/nginx:/usr/share/nginx
+                      #deploy:
+                      #replicas: 2
+                      #restart_policy:
+                      #condition: on-failure
+
+#networks:
+        #proxy-network:
+
+#volumes:
+        #proxy-certificates: ./letsencrypt
+
+

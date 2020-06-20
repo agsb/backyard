@@ -2,30 +2,38 @@
 # maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
 #
 
-version: '2.2'
+version: "2.2"
+
+networks:
+    default:
+    services:
+        external: true
 
 services:
   
-    getnetwork:
+    geonetwork_2.10-9.0:
         build: 
             context: ./
-            dockerfile: Dockerfile_geonetwork
-        image: geonetwork:2.10-9.0
-        container_name: geonetwork4${COMPOSE_PROJECT_NAME}
+            dockerfile: Dockerfile_${COMPOSE_PROJECT_NAME}
+        image: ${COMPOSE_PROJECT_NAME}:${SET_DOCKER_TAG}
+        container_name: ${COMPOSE_PROJECT_NAME}-${SET_DOCKER_TAG}
         restart: unless-stopped
         stdin_open: true
         # tty: true
         labels:
-            org.geonetwork.component: geonetwork
-            org.instance.name: geonetwork
+            org.${COMPOSE_PROJECT_NAME}.component: ${COMPOSE_PROJECT_NAME}
+            org.instance.name: ${COMPOSE_PROJECT_NAME}
         ports:
-            - 8080:8080
+            - ${SET_DOCKER_PORT}
         volumes:
-            - geonetwork_datadir:/var/lib/geonetwork/_data
+            - volume_datadir:/var/lib/${COMPOSE_PROJECT_NAME}/_data
         environment:
-            geonetwork_DEFAULT_EMAIL: admin@example.com
+            ${COMPOSE_PROJECT_NAME}_DEFAULT_EMAIL: admin@example.com
+        networks:
+            - default
+            - services
 
 volumes:
-    geonetwork_datadir:
-        name: ${COMPOSE_PROJECT_NAME}_datadir-2.10-9.0
+    volume_datadir:
+        name: ${COMPOSE_PROJECT_NAME}-datadir-${SET_DOCKER_TAG}
 

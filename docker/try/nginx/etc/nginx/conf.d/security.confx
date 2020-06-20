@@ -1,0 +1,389 @@
+# by agsb@
+# in 17/04/2020 from https://serverfault.com/questions/940842/strange-character-added-at-the-end-of-url
+
+## Prevent access to this file
+#location = /nginx.conf {
+#log_not_found off;
+#access_log off;
+#return 404;
+#break;
+#}
+
+## Protect against common file injection attacks
+set $file_injection 0;
+if ($query_string ~ "[a-zA-Z0-9_]=http://") {
+set $file_injection 1;
+}
+if ($query_string ~ "[a-zA-Z0-9_]=(\.\.//?)+") {
+set $file_injection 1;
+}
+if ($query_string ~ "[a-zA-Z0-9_]=/([a-z0-9_.]//?)+") {
+set $file_injection 1;
+}
+if ($file_injection = 1) {
+return 403;
+break;
+}
+
+## Disable PHP Easter Eggs
+if ($query_string ~ "\=PHP[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}") {
+return 403;
+break;
+}
+
+## Block access to configuration.php-dist and htaccess.txt
+location = /configuration.php-dist {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /htaccess.txt {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /web.config {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /configuration.php {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /CONTRIBUTING.md {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /joomla.xml {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /LICENSE.txt {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /phpunit.xml {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /README.txt {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+location = /web.config.txt {
+log_not_found off;
+access_log off;
+return 404;
+break;
+}
+
+## Protect against clickjacking
+add_header X-Frame-Options SAMEORIGIN;
+
+######################################################################
+## Directory indices and no automatic directory listings
+## Forces index.php to be read before the index.htm(l) files
+## Also disables showing files in a directory automatically
+######################################################################
+index index.php index.html index.htm;
+
+######################################################################
+### Redirect non-www to www
+#######################################################################
+if ($host = 'alex-alu.fr' ) {
+rewrite ^/(.*)$ $scheme://www.example.fr/$1 permanent;
+}
+
+######################################################################
+## Disable following symlinks
+######################################################################
+disable_symlinks if_not_owner;
+
+######################################################################
+## Automatic compression of static resources
+## Compress text, html, javascript, css, xml and other static resources
+## May kill access to your site for old versions of Internet Explorer
+######################################################################
+# The following is the actual automatic compression setup
+gzip            on;
+gzip_vary       on;
+gzip_comp_level 6;
+gzip_proxied    expired no-cache no-store private auth;
+gzip_min_length 1000;
+gzip_http_version 1.1;
+gzip_types      text/plain text/css application/xhtml+xml
+application/xml+rss application/rss+xml application/x-javascript
+application/javascript text/javascript application/json text/xml
+application/xml image/svg+xml;
+gzip_buffers    16 8k;
+gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
+## HSTS Header - See
+http://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security
+add_header Strict-Transport-Security max-age=31536000;
+
+## Referrer-policy
+add_header Referrer-Policy "unsafe-url";
+
+## Disable HTTP methods TRACE and TRACK (protect against XST)
+if ($request_method ~ ^(TRACE|TRACK)$ ) {
+return 405;
+}
+
+## Reduce MIME type security risks
+add_header X-Content-Type-Options "nosniff";
+
+## Reflected XSS prevention
+add_header X-XSS-Protection "1; mode=block";
+
+## Prevent content transformation
+add_header Cache-Control "no-transform";
+
+# -- Socket settings, see http://wiki.nginx.org/HttpCoreModule
+connection_pool_size        8192;
+client_header_buffer_size   4k;
+large_client_header_buffers 8 8k;
+request_pool_size           8k;
+
+# -- Performance, see http://wiki.nginx.org/HttpCoreModule
+sendfile on;
+sendfile_max_chunk 1m;
+postpone_output 0;
+tcp_nopush on;
+tcp_nodelay on;
+
+# -- Output buffering, see http://wiki.nginx.org/HttpCoreModule
+output_buffers 8 32k;
+
+# -- Filehandle Cache, useful when serving a large number of static files
+(Joomla! sites do that)
+open_file_cache max=2000 inactive=20s;
+open_file_cache_valid 30s;
+open_file_cache_min_uses 2;
+open_file_cache_errors on;
+
+# -- Character encoding, see http://wiki.nginx.org/HttpCharsetModule
+charset                 utf-8;
+source_charset          utf-8;
+
+# -- Security options, see http://wiki.nginx.org/HttpCoreModule
+server_name_in_redirect off;
+server_tokens off;
+ignore_invalid_headers on;
+
+# -- Maximum client body size set to 1 Gigabyte
+client_max_body_size 1G;
+set $common_exploit 0;
+if ($query_string ~ "proc/self/environ") {
+set $common_exploit 1;
+}
+if ($query_string ~ "mosConfig_[a-zA-Z_]{1,21}(=|\%3D)") {
+set $common_exploit 1;
+}
+if ($query_string ~ "base64_(en|de)code\(.*\)") {
+set $common_exploit 1;
+}
+if ($query_string ~ "(<|%3C).*script.*(>|%3E)") {
+set $common_exploit 1;
+}
+if ($query_string ~ "GLOBALS(=|\[|\%[0-9A-Z]{0,2})") {
+set $common_exploit 1;
+}
+if ($query_string ~ "_REQUEST(=|\[|\%[0-9A-Z]{0,2})") {
+set $common_exploit 1;
+}
+if ($common_exploit = 1) {
+return 403;
+}
+
+## Enable SEF URLs
+location / {
+try_files $uri $uri/ /index.php?$args;
+}
+location ~* /index.php$ {
+fastcgi_pass unix:/var/run/php/php7.2-fpm-example.sock;
+fastcgi_index index.php;
+include /etc/nginx/fastcgi_params;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+break;
+}
+
+######################################################################
+## Advanced server protection rules exceptions
+######################################################################
+#location = /administrator/components/com_akeeba/restore.php {
+#fastcgi_pass unix:/var/run/php/php7.2-fpm-example.sock;
+#fastcgi_index index.php;
+#include /etc/nginx/fastcgi_params;
+#fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#break;
+#}
+#location = /administrator/components/com_admintools/restore.php {
+#fastcgi_pass unix:/var/run/php/php7.2-fpm-example.sock;
+#fastcgi_index index.php;
+#include /etc/nginx/fastcgi_params;
+#fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#break;
+#}
+#location = /administrator/components/com_joomlaupdate/restore.php {
+#fastcgi_pass unix:/var/run/php/php7.2-fpm-example.sock;
+#fastcgi_index index.php;
+#include /etc/nginx/fastcgi_params;
+#fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#break;
+#}
+
+location = /robots.txt {
+break;
+}
+location ~* ^/cache/.*\.php$
+{
+break;
+}
+location ~* ^/cache/.*$
+{
+break;
+}
+location ~* ^/cache\/nextend/.*\.php$
+{
+break;
+}
+location ~* ^/cache\/nextend/.*$
+{
+break;
+}
+location ~* ^/cache\/t3_assets/.*\.php$
+{
+break;
+}
+location ~* ^/cache\/t3_assets/.*$
+{
+break;
+}
+location ~* ^/cache\/t3_pages/.*\.php$
+{
+break;
+}
+location ~* ^/cache\/t3_pages/.*$
+{
+break;
+}
+location ~* ^/images/.*\.php$
+{
+break;
+}
+location ~* ^/images/.*$
+{
+break;
+}
+location ~* ^/t3\-assets/.*\.php$
+{
+break;
+}
+location ~* ^/t3\-assets/.*$
+{
+break;
+}
+location ~* ^/t3\-assets\/css/.*\.php$
+{
+break;
+}
+location ~* ^/t3\-assets\/css/.*$
+{
+break;
+}
+location ~* ^/t3\-assets\/js/.*\.php$
+{
+break;
+}
+location ~* ^/t3\-assets\/js/.*$
+{
+break;
+}
+######################################################################
+## Advanced server protection
+######################################################################
+# Allow media files in select back-end directories
+location ~*
+^/administrator/(components|modules|templates|images|plugins)/.*. (jpe|jpg|jpeg|jp2|jpe2|png|gif|bmp|css|js|swf|html|mpg|mp3|mpeg|mp4|avi|wav|ogg|ogv|xls|xlsx|doc|docx|ppt|pptx|zip|rar|pdf|xps|txt|7z|svg|odt|ods|odp|flv|mov|htm|ttf|woff|woff2|eot|JPG|JPEG|PNG|GIF|CSS|JS|TTF|WOFF|WOFF2|EOT)$ {
+break;
+}
+
+# Allow access to the back-end index.php file
+location = /administrator/index.php {
+fastcgi_pass unix:/var/run/php/php7.2-fpm-example.sock;
+fastcgi_index index.php;
+include /etc/nginx/fastcgi_params;
+fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+break;
+}
+location ~* ^/administrator$ {
+return 301 /administrator/index.php?$args;
+}
+location ~* ^/administrator/$ {
+return 301 /administrator/index.php?$args;
+}
+
+# Disable access to everything else.
+location ~* /administrator.*$ {
+# If it is a file, directory or symlink and I haven't deliberately
+# enabled access to it, forbid any access to it!
+if (-e $request_filename) {
+    return 403;
+}
+# In any other case, just treat as a SEF URL
+try_files $uri $uri/ /administrator/index.php?$args;
+}
+# Allow media files in select front-end directories
+location ~* ^/(components|modules|templates|images|plugins|media|libraries|media/jui/fonts)/.*. (jpe|jpg|jpeg|jp2|jpe2|png|gif|bmp|css|js|swf|html|mpg|mp3|mpeg|mp4|avi|wav|ogg|ogv|xls|xlsx|doc|docx|ppt|pptx|zip|rar|pdf|xps|txt|7z|svg|odt|ods|odp|flv|mov|ico|htm|ttf|woff|woff2|eot|JPG|JPEG|PNG|GIF|CSS|JS|TTF|WOFF|WOFF2|EOT)$ {
+break;
+}
+
+## Disallow front-end access for certain Joomla! system directories (unless
+access to their files is allowed above)
+location ~* ^/includes/js/ {
+return 403;
+}
+location ~* ^/(cache|includes|language|logs|log|tmp)/ {
+return 403;
+}
+# Allow access to /
+location ~* ^/$ {
+return 301 /index.php?$args;
+}
+
+# Disable access to everything else.
+location ~* ^/.*$ {
+# If it is a file, directory or symlink and I haven't deliberately
+# enabled access to it, forbid any access to it!
+if (-e $request_filename) {
+    return 403;
+}
+# In any other case, just treat as a SEF URL
+try_files $uri $uri/ /index.php?$args;
+}
