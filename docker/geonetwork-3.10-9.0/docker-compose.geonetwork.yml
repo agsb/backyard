@@ -1,0 +1,48 @@
+# GeoNetwork
+#
+# Access via "http://localhost:8080/geonetwork" (or "http://$(docker-machine ip):8080/geonetwork" if using docker-machine)
+#
+# Default user: admin
+# Default password: admin
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+services:
+  
+    geonetwork:
+        build: 
+            context: ./
+            dockerfile: Dockerfile_geonetwork
+        image: geonetwork2${COMPOSE_PROJECT_NAME}:local
+        container_name: geonetwork4${COMPOSE_PROJECT_NAME}
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.geonetwork.component: geonetwork
+            org.geonetwork.instance.name: geonetwork
+        ports:
+            - 8080:8080
+        volumes:
+            - geonetwork_datadir:/var/lib/geonetwork/_data
+        environment:
+            DATA_DIR: /var/lib/geonetwork/_data
+        env_file:
+            - ./geonetwork.env
+#       depends_on:
+
+#        healthcheck:
+#             test: "curl --fail --silent --write-out 'HTTP CODE : %{http_code}\n' --output /dev/null http://127.  0.0.1:8080/geonetwork/"
+#             interval: 60s
+#             timeout: 15s
+#             retries: 3
+#             start_period: 180s
+
+
+volumes:
+    geonetwork_datadir:
+        name: ${COMPOSE_PROJECT_NAME}_datadir
+
