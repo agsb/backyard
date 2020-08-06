@@ -1,0 +1,12 @@
+
+notes for geonetwork 2.10.4
+
+- in *overrides* files, do not use quotation marks (") for filename values. 
+
+- in *overrides* files, preserve only and only one xml root
+
+- 30/04/2020, parser error xsl/search.xsl line 12 column 41,
+
+- 02/05/2020, is caused no template for "getLangId", only occours when using gui iso 19139, defined in config.xml as value="iso19139", in file ../xls/metadata/common.xsl 
+
+- 11/05/2020 no tips to solve, then make it as <!--  <xsl:variable name="langId"> ..</xsl:variable> --> and all works. 

@@ -1,0 +1,51 @@
+#
+# maintainer: "Alvaro Barcellos <alvaro.barcellos@cprm.gov.br>"
+#
+
+version: '2.2'
+
+networks:
+    default:
+    internal_hosts:
+        external: true
+
+services:
+  
+    postgresql-12.03:
+        env_file: postgresql.env
+        build: 
+            context: ./
+            dockerfile: Dockerfile
+
+#        cpu_rt_runtime: '400ms'
+#        cpu_rt_period: '1400us'
+
+        image: postgresql:12.03
+        container_name: postgresql-12.03
+        restart: unless-stopped
+        stdin_open: true
+        # tty: true
+        labels:
+            org.cprm.component: postgresql
+            org.cprm.name: postgresql
+        ports:
+            - 5432:5432
+        networks:
+            - default
+            - internal_hosts
+        volumes:
+            - postgresql_datadir:/var/lib/postgresql/_data
+        environment:
+            postgresql_DEFAULT_EMAIL: admin_docker@cprm.gov.br
+#        healthcheck:
+#            test: ["CMD", "curl", "-f", "http://localhost"]
+#            interval: 1m30s
+#            timeout: 10s
+#            retries: 3
+#            start_period: 60s
+
+
+volumes:
+    postgresql_datadir:
+        name: postgresql_datadir_12.03
+

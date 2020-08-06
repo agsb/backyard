@@ -1,0 +1,11 @@
+# explicitly set user/group IDs
+ENV user  guest
+ENV group guest
+ENV guid  999
+
+RUN set -eux; \
+	groupadd -r $group -g $guid ; \
+	useradd  -r $user  -g $group --u $guid -d /var/lib/$user --shell=/bin/false ; \
+	mkdir -p /var/lib/$user ; \
+	chown -R $user:$group /var/lib/$user
+

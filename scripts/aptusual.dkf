@@ -1,0 +1,10 @@
+#
+#   basic apt
+#
+RUN set -ex ; \
+    apt update ; \
+    apt install -y ; \
+    apt purge -y --auto-remove ; \
+    rm -rf /var/lib/apt/lists/*
+
+#
